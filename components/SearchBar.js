@@ -30,24 +30,57 @@ function SearchBar({ pokemon }) {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div>
-      <form>
-        <input
-          value={name}
-          onChange={(event) => onChangeHandler(event.target.value)}
-          placeholder="Enter pokemon"
-          onBlur={() => {
-            setTimeout(() => {
-              setSuggestions([]);
-            }, 100);
-          }}
-        />
+    <div className="px-48">
+      <form className="w-full">
+        <div className="flex items-center w-full">
+          <input
+            className="border-2 border-black w-full h-10 p-2 focus:outline-none placeholder-black"
+            value={name}
+            onChange={(event) => onChangeHandler(event.target.value)}
+            placeholder="Search..."
+            onBlur={() => {
+              setTimeout(() => {
+                setSuggestions([]);
+              }, 100);
+            }}
+            onFocus={() => {
+              onChangeHandler(name);
+            }}
+          />
+          <span
+            className="border-2 border-black px-1 ml-5"
+            onClick={handleSubmit}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-6 cursor-pointer"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </span>
+        </div>
       </form>
-      <div>
+      <div className="pr-14">
         {suggestions &&
           suggestions.map((suggestion, i) => (
-            <div key={i} onClick={() => onSuggestHandler(suggestion.name)}>
+            <div
+              className="border-2 border-t-0 border-black p-2 hover:bg-gray-200 cursor-pointer"
+              key={i}
+              onClick={() => onSuggestHandler(suggestion.name)}
+            >
               {suggestion.name}
             </div>
           ))}
