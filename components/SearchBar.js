@@ -73,7 +73,7 @@ function SearchBar({ pokemon }) {
           </span>
         </div>
       </form>
-      <div className="max-h-44 width-70 overflow-x-auto z-10 absolute">
+      <div className="max-h-custom-40 w-custom-70 overflow-x-auto z-10 absolute">
         {suggestions &&
           suggestions.map((suggestion, i) => (
             <div
