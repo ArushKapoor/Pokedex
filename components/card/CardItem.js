@@ -1,6 +1,9 @@
 import Image from "next/image";
 
 function CardItem(props) {
+  console.log("Card Item called");
+  console.log(props.pokemon);
+
   return (
     <div className="flex flex-col border-2 border-gray-200 shadow-md rounded-md hover:shadow-lg">
       <Image
