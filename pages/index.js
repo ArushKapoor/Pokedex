@@ -30,7 +30,7 @@ function HomePage() {
 
   return (
     <Fragment>
-      <SearchBar />
+      <SearchBar pokemon={pokemon} />
       <Cards pokemon={pokemon} />;
     </Fragment>
   );
