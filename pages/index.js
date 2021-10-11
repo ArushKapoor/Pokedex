@@ -9,10 +9,15 @@ import SearchBar from "../components/SearchBar";
 function HomePage() {
   const [pokemon, setPokemon] = useState([]);
 
-  const [{ pokemonName }] = useStateValue();
+  const [{ pokemons }] = useStateValue();
 
   useEffect(() => {
-    // console.log(`Use Effect pokemonName=${pokemonName}`);
+    async function fetchApiData() {
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=25");
+      const data = await res.json();
+
+      return data.results;
+    }
 
     async function fetchPokemonData() {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=25");
@@ -25,13 +30,17 @@ function HomePage() {
       setPokemon(pokemonData);
     }
 
-    fetchPokemonData();
-  }, [pokemonName]);
+    if (pokemons.length === 0) {
+      fetchApiData().then((response) => fetchPokemonData(response));
+    } else {
+      setPokemon(pokemons);
+    }
+  }, [pokemons]);
 
   return (
     <Fragment>
       <SearchBar pokemon={pokemon} />
-      <Cards pokemon={pokemon} />;
+      <Cards pokemon={pokemon} />
     </Fragment>
   );
 }

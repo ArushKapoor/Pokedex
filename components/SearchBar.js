@@ -1,20 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useStateValue } from "./react-context-api/StateProvider";
+
+// TODO - On backspace the data for the search bar doesnt change.
 
 function SearchBar({ pokemon }) {
   const [name, setName] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [{ pokemonName }, dispatch] = useStateValue();
 
-  useEffect(() => {
-    dispatch({
-      type: "SEND_NAME",
-      pokemonName: name,
-    });
-  }, [name, dispatch]);
-
   const onSuggestHandler = (name) => {
-    setName(name);
+    onChangeHandler(name);
     setSuggestions([]);
   };
 
@@ -26,8 +21,13 @@ function SearchBar({ pokemon }) {
         return user.name.match(regex);
       });
     }
+
     setName(name);
     setSuggestions(matches);
+    dispatch({
+      type: "SHOW_POKEMON",
+      pokemons: matches,
+    });
   };
 
   return (
