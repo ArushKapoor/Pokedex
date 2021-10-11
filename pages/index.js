@@ -1,9 +1,16 @@
+import { Fragment } from "react";
 import Cards from "../components/card/Cards";
+import SearchBar from "../components/SearchBar";
 
 // our-domain.com/
 
 function HomePage(props) {
-  return <Cards pokemon={props.pokemon} />;
+  return (
+    <Fragment>
+      <SearchBar />
+      <Cards pokemon={props.pokemon} />;
+    </Fragment>
+  );
 }
 
 async function test(pokemon) {
