@@ -35,7 +35,7 @@ function SearchBar({ pokemon }) {
   };
 
   return (
-    <div className="px-48">
+    <div className="px-48 relative">
       <form className="w-full">
         <div className="flex items-center w-full">
           <input
@@ -73,11 +73,11 @@ function SearchBar({ pokemon }) {
           </span>
         </div>
       </form>
-      <div className="pr-14">
+      <div className="max-h-44 width-70 overflow-x-auto z-10 absolute">
         {suggestions &&
           suggestions.map((suggestion, i) => (
             <div
-              className="border-2 border-t-0 border-black p-2 hover:bg-gray-200 cursor-pointer"
+              className="border-2 border-t-0 border-black p-2 bg-white hover:bg-gray-200 cursor-pointer capitalize"
               key={i}
               onClick={() => onSuggestHandler(suggestion.name)}
             >
