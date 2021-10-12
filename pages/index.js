@@ -7,7 +7,7 @@ import SearchBar from "../components/SearchBar";
 // our-domain.com/
 
 function HomePage() {
-  const [{ pokemons, allPokemons, offset }, dispatch] = useStateValue();
+  const [{ searchName, allPokemons, offset }, dispatch] = useStateValue();
 
   useEffect(() => {
     console.log("useEffect called");
@@ -38,7 +38,20 @@ function HomePage() {
       });
     };
 
+    setTimeout(() => {
+      if (
+        offset < 1118 &&
+        window.innerHeight + document.documentElement.scrollTop ===
+          document.documentElement.offsetHeight
+      ) {
+        scrollToEnd();
+      }
+    }, 500);
+
     window.onscroll = function () {
+      // const leftValue = window.innerHeight + document.documentElement.scrollTop;
+      // const rightValue = document.documentElement.offsetHeight;
+      // console.log(window.innerHeight + document.documentElement.scrollTop);
       if (
         window.innerHeight + document.documentElement.scrollTop ===
         document.documentElement.offsetHeight
@@ -47,6 +60,23 @@ function HomePage() {
       }
     };
   }, [offset, dispatch]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        offset < 1118 &&
+        window.innerHeight + 200 > document.body.clientHeight
+      ) {
+        console.log("true");
+        dispatch({
+          type: "CHANGE_OFFSET",
+          offset: offset + 25,
+        });
+      } else {
+        console.log("false");
+      }
+    }, 500);
+  }, [searchName, dispatch, offset]);
 
   return (
     <Fragment>
