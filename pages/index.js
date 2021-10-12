@@ -49,9 +49,6 @@ function HomePage() {
     }, 500);
 
     window.onscroll = function () {
-      // const leftValue = window.innerHeight + document.documentElement.scrollTop;
-      // const rightValue = document.documentElement.offsetHeight;
-      // console.log(window.innerHeight + document.documentElement.scrollTop);
       if (
         window.innerHeight + document.documentElement.scrollTop ===
         document.documentElement.offsetHeight

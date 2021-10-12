@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useStateValue } from "./react-context-api/StateProvider";
 
 // TODO - On backspace the data for the search bar doesnt change.
@@ -7,6 +7,22 @@ function SearchBar() {
   const [name, setName] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [{ allPokemons }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    const localData = localStorage.getItem("searchName");
+
+    if (localData) {
+      setName(localData);
+      dispatch({
+        type: "SET_NAME",
+        searchName: localData,
+      });
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("searchName", name);
+  }, [name]);
 
   const onSuggestHandler = (name) => {
     onChangeHandler(name);
