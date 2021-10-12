@@ -2,6 +2,7 @@
 export const initialState = {
   pokemons: [],
   allPokemons: [],
+  searchName: "",
 };
 
 // This is where we create the reducer which has state and actions which
@@ -33,6 +34,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         pokemons: action.pokemons,
+      };
+
+    case "SET_NAME":
+      return {
+        ...state,
+        searchName: action.searchName,
       };
 
     default:

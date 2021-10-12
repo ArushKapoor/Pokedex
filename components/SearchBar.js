@@ -6,7 +6,7 @@ import { useStateValue } from "./react-context-api/StateProvider";
 function SearchBar({ pokemon }) {
   const [name, setName] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [{ pokemonName }, dispatch] = useStateValue();
+  const [{ pokemonName, allPokemons }, dispatch] = useStateValue();
 
   const onSuggestHandler = (name) => {
     onChangeHandler(name);
@@ -16,17 +16,16 @@ function SearchBar({ pokemon }) {
   const onChangeHandler = (name) => {
     let matches = [];
     if (name.length > 0) {
-      matches = pokemon.filter((user) => {
+      matches = allPokemons.filter((user) => {
         const regex = new RegExp(`${name}`, "gi");
         return user.name.match(regex);
       });
     }
-
-    setName(name);
     setSuggestions(matches);
+    setName(name);
     dispatch({
-      type: "SHOW_POKEMON",
-      pokemons: matches,
+      type: "SET_NAME",
+      searchName: name,
     });
   };
 

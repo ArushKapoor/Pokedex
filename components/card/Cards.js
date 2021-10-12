@@ -1,16 +1,17 @@
 import CardItem from "./CardItem";
+import { useStateValue } from "../react-context-api/StateProvider";
 
-function Cards(props) {
-  //   console.log(props.pokemon);
+function Cards() {
+  const [{ allPokemons, searchName }, dispatch] = useStateValue();
+
   return (
     <div className="grid grid-cols-4 gap-10 py-8 px-32 z-0">
-      {/* <CardItem pokemon={props.pokemon[0]} />
-      <CardItem pokemon={props.pokemon[0]} />
-      <CardItem pokemon={props.pokemon[0]} />
-      <CardItem pokemon={props.pokemon[0]} /> */}
-      {props.pokemon.map((pokemon) => (
-        <CardItem key={pokemon.name} pokemon={pokemon} />
-      ))}
+      {allPokemons.map((pokemon) => {
+        const regex = new RegExp(`${searchName}`, "gi");
+        if (pokemon.name.match(regex)) {
+          return <CardItem key={pokemon.name} pokemon={pokemon} />;
+        }
+      })}
     </div>
   );
 }

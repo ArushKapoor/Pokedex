@@ -12,6 +12,7 @@ function HomePage() {
   const [{ pokemons, allPokemons }, dispatch] = useStateValue();
 
   useEffect(() => {
+    console.log("useEffect called");
     async function fetchPokemonData() {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=25");
       const data = await res.json();
@@ -35,12 +36,12 @@ function HomePage() {
     } else {
       setPokemon(pokemons);
     }
-  }, [pokemons]);
+  }, []);
 
   return (
     <Fragment>
       <SearchBar pokemon={pokemon} />
-      <Cards pokemon={pokemon} />
+      <Cards />
     </Fragment>
   );
 }
