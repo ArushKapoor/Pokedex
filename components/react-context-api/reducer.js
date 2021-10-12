@@ -1,6 +1,7 @@
 // This is the initial state of the data layer
 export const initialState = {
   pokemons: [],
+  allPokemons: [],
 };
 
 // This is where we create the reducer which has state and actions which
@@ -12,6 +13,22 @@ const reducer = (state, action) => {
   // this is a switch case to decide what changes to make in the data
   // layer when we fire off a dispatch
   switch (action.type) {
+    case "ALL_POKEMON":
+      let newPokemons = [...state.allPokemons];
+
+      if (newPokemons.length === 0) {
+        newPokemons = action.allPokemons;
+      } else {
+        action.allPokemons.map((object) => {
+          newPokemons.push(object);
+        });
+      }
+
+      return {
+        ...state,
+        allPokemons: newPokemons,
+      };
+
     case "SHOW_POKEMON":
       return {
         ...state,
