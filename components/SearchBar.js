@@ -3,10 +3,10 @@ import { useStateValue } from "./react-context-api/StateProvider";
 
 // TODO - On backspace the data for the search bar doesnt change.
 
-function SearchBar({ pokemon }) {
+function SearchBar() {
   const [name, setName] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [{ pokemonName, allPokemons }, dispatch] = useStateValue();
+  const [{ allPokemons }, dispatch] = useStateValue();
 
   const onSuggestHandler = (name) => {
     onChangeHandler(name);

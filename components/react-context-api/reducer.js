@@ -1,6 +1,5 @@
 // This is the initial state of the data layer
 export const initialState = {
-  pokemons: [],
   allPokemons: [],
   searchName: "",
 };
@@ -28,12 +27,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         allPokemons: newPokemons,
-      };
-
-    case "SHOW_POKEMON":
-      return {
-        ...state,
-        pokemons: action.pokemons,
       };
 
     case "SET_NAME":

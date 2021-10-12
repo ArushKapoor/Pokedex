@@ -7,8 +7,6 @@ import SearchBar from "../components/SearchBar";
 // our-domain.com/
 
 function HomePage() {
-  const [pokemon, setPokemon] = useState([]);
-
   const [{ pokemons, allPokemons }, dispatch] = useStateValue();
 
   useEffect(() => {
@@ -27,20 +25,13 @@ function HomePage() {
       });
 
       // console.log(allPokemons);
-
-      setPokemon(pokemonData);
     }
-
-    if (pokemons.length === 0) {
-      fetchPokemonData();
-    } else {
-      setPokemon(pokemons);
-    }
+    fetchPokemonData();
   }, []);
 
   return (
     <Fragment>
-      <SearchBar pokemon={pokemon} />
+      <SearchBar />
       <Cards />
     </Fragment>
   );
