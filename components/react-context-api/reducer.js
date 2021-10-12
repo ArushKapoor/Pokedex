@@ -2,6 +2,7 @@
 export const initialState = {
   allPokemons: [],
   searchName: "",
+  offset: 0,
 };
 
 // This is where we create the reducer which has state and actions which
@@ -33,6 +34,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         searchName: action.searchName,
+      };
+
+    case "CHANGE_OFFSET":
+      return {
+        ...state,
+        offset: action.offset,
       };
 
     default:

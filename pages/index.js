@@ -7,12 +7,14 @@ import SearchBar from "../components/SearchBar";
 // our-domain.com/
 
 function HomePage() {
-  const [{ pokemons, allPokemons }, dispatch] = useStateValue();
+  const [{ pokemons, allPokemons, offset }, dispatch] = useStateValue();
 
   useEffect(() => {
     console.log("useEffect called");
     async function fetchPokemonData() {
-      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=25");
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`
+      );
       const data = await res.json();
 
       const pokemonData = await Promise.all(
@@ -27,7 +29,24 @@ function HomePage() {
       // console.log(allPokemons);
     }
     fetchPokemonData();
-  }, []);
+
+    const scrollToEnd = () => {
+      console.log("isAtEnd");
+      dispatch({
+        type: "CHANGE_OFFSET",
+        offset: offset + 25,
+      });
+    };
+
+    window.onscroll = function () {
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
+      ) {
+        scrollToEnd();
+      }
+    };
+  }, [offset, dispatch]);
 
   return (
     <Fragment>
