@@ -12,6 +12,8 @@
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-virtualized": "^9.22.3",
+    "react-window": "^1.8.6",
     "tailwindcss": "^2.2.16"
   },
   "devDependencies": {
