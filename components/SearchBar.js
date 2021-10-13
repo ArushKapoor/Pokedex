@@ -54,6 +54,7 @@ function SearchBar() {
       <form className="w-full">
         <div className="flex items-center w-full">
           <input
+            data-cy="search-bar"
             className="border-2 border-black w-full h-10 p-2 focus:outline-none placeholder-black"
             value={name}
             onChange={(event) => onChangeHandler(event.target.value)}
@@ -72,6 +73,7 @@ function SearchBar() {
             onClick={handleSubmit}
           >
             <svg
+              data-cy="search-icon"
               xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-6 cursor-pointer"
               fill="none"
@@ -88,7 +90,10 @@ function SearchBar() {
           </span>
         </div>
       </form>
-      <div className="max-h-custom-40 w-custom-70 overflow-x-auto z-10 absolute">
+      <div
+        data-cy="search-suggestions"
+        className="max-h-custom-40 w-custom-70 overflow-x-auto z-10 absolute"
+      >
         {suggestions &&
           suggestions.map((suggestion, i) => (
             <div

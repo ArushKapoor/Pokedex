@@ -5,7 +5,10 @@ function CardItem(props) {
   // console.log(props.pokemon);
 
   return (
-    <div className="flex flex-col border-2 border-gray-200 shadow-md rounded-md hover:shadow-lg">
+    <div
+      data-cy="card-item"
+      className="flex flex-col border-2 border-gray-200 shadow-md rounded-md hover:shadow-lg"
+    >
       <Image
         className="bg-gray-200"
         src={props.pokemon.url}
